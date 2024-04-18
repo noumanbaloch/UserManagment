@@ -13,8 +13,7 @@ public class UserManagementDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
-        .UseSqlServer()
-        .UseSnakeCaseNamingConvention();
+        .UseSqlServer();
 
     public DbSet<UserEntity> AppUsers => Set<UserEntity>();
 }
