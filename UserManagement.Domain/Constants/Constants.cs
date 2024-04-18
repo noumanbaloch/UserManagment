@@ -4,6 +4,7 @@ public struct ApiStatusCodes
 {
     // 100 series for failures
     public const int USER_DOES_NOT_EXIST = 100;
+    public const int NO_RECORD_FOUND = 101;
 
     // 200 series for success
     public const int USER_UPDATED_SUCCESSFULLY = 200;
@@ -20,6 +21,7 @@ public struct ApiResponseMessages
     public const string USER_ADDED_SUCCESSFULLY = "User added successfully.";
     public const string RECORD_FOUNDED_SUCCESSFULLY = "Record founded successfully.";
     public const string USER_DELETED_SUCCESSFULLY = "User deleted successfully.";
+    public const string NO_RECORD_FOUND = "No record found.";
 }
 
 public struct Usernames

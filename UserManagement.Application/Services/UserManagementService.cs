@@ -43,6 +43,11 @@ public class UserManagementService : IUserManagmenetService
     {
         var users = await _userManagementRepository.GetUsersAsync();
 
+        if(users is null || !users.Any())
+        {
+            return GenericResponse<IEnumerable<GetUsersResponseDto>>.Failure(ApiResponseMessages.NO_RECORD_FOUND, ApiStatusCodes.NO_RECORD_FOUND);
+        }
+
         return GenericResponse<IEnumerable<GetUsersResponseDto>>.Success(users, ApiResponseMessages.RECORD_FOUNDED_SUCCESSFULLY, ApiStatusCodes.RECORD_FOUNDED_SUCCESSFULLY);
     }
 

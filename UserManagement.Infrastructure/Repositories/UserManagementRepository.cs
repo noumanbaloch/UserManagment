@@ -25,6 +25,7 @@ internal class UserManagementRepository : BaseRepository, IUserManagementReposit
 
     public async Task<IEnumerable<GetUsersResponseDto>> GetUsersAsync()
         => await _context.AppUsers
+        .Where(x => x.Deleted == false)
         .Select(x => new GetUsersResponseDto(x.Id,
             x.FirstName,
             x.LastName,
