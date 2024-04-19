@@ -17,6 +17,20 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+
+        // This is just for local demo normaly we only allow specfic clients
+        // Add CORS service
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins", builder =>
+            {
+                builder.AllowAnyOrigin() // Allow all origins
+                       .AllowAnyMethod() // Allow all HTTP methods
+                       .AllowAnyHeader(); // Allow all headers
+            });
+        });
+
+
         builder.Services.AddApplicationServices();
         builder.Services.AddPersistenceServices(builder.Configuration);
 
@@ -30,6 +44,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseCors("AllowAllOrigins");
 
         app.UseAuthorization();
 

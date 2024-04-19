@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  
+  <!-- User Form -->
+  <form #userForm="ngForm" (ngSubmit)="addUser()">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="mobileNumber">Mobile Number:</label>
+      <input type="text" id="mobileNumber" name="mobileNumber" [(ngModel)]="user.mobileNumber" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Add User</button>
+    <button type="button" (click)="updateUser()" class="btn btn-info">Update User</button>
+  </form>
+
+  <!-- Users List -->
+  <div *ngIf="users && users.length > 0">
+    <h2>Users List</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+          <th>Date of Birth</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.userId }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.mobileNumber }}</td>
+          <td>{{ user.dateOfBirth | date:'shortDate' }}</td>
+          <td>
+            <button (click)="editUser(user)" class="btn btn-info btn-sm">Edit</button>
+            <button (click)="deleteUser(user.userId)" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!users || users.length == 0">
+    <p>No users found!</p>
+  </div>
+</div>
